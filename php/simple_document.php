@@ -9,6 +9,12 @@ if($configManager->getConfig('admin.password')==null){
 	header("Location: $url");
 	exit;
 }
+$pdfFilePath = $configManager->getConfig('path.pdf') . $doc ;
+$swfFilePath = $configManager->getConfig('path.swf') . $doc . ".swf";
+if (!$swfFilePath==null)
+	if (file_exists($swfFilePath))
+		if (filemtime($pdfFilePath)>filemtime($swfFilePath)) 
+			exec('rm ' . $swfFilePath);
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
