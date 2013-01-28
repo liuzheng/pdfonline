@@ -13,8 +13,7 @@ $pdfFilePath = $configManager->getConfig('path.pdf') . $_GET["doc"] ;
 $swfFilePath = $configManager->getConfig('path.swf') . $_GET["doc"] . ".swf";
 if (!$swfFilePath==null)
 	if (file_exists($swfFilePath))
-		if (filemtime($pdfFilePath)>filemtime($swfFilePath)) 
-			exec('rm ' . $swfFilePath);
+		exec('rm ' . $swfFilePath);
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
