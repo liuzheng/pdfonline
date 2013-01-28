@@ -9,8 +9,8 @@ if($configManager->getConfig('admin.password')==null){
 	header("Location: $url");
 	exit;
 }
-$pdfFilePath = $configManager->getConfig('path.pdf') . $doc ;
-$swfFilePath = $configManager->getConfig('path.swf') . $doc . ".swf";
+$pdfFilePath = $configManager->getConfig('path.pdf') . $_GET["doc"] ;
+$swfFilePath = $configManager->getConfig('path.swf') . $_GET["doc"] . ".swf";
 if (!$swfFilePath==null)
 	if (file_exists($swfFilePath))
 		if (filemtime($pdfFilePath)>filemtime($swfFilePath)) 
