@@ -50,7 +50,7 @@ exec('pdf2swf ' . $pdfFilePath . ' ' . $swfFilePath);
 	            $('#documentViewer').FlexPaperViewer(
 				 { config : {
 
-						 SWFFile : <?php echo "'" . "../docs/" . $_GET["doc"] . ".swf" ."'"; ?>
+						 SWFFile : <?php echo "'" . "../docs/" . $_GET["doc"] . ".swf" ."'"; ?>,
 						 Scale : 0.6,
 						 ZoomTransition : 'easeOut',
 						 ZoomTime : 0.5,
