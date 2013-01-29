@@ -14,6 +14,7 @@ $swfFilePath = $configManager->getConfig('path.swf') . $_GET["doc"] . ".swf";
 if (!$swfFilePath==null)
 	if (file_exists($swfFilePath))
 		exec('rm ' . $swfFilePath);
+exec('pdf2swf ' . $pdfFilePath . ' ' . $swfFilePath);
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -49,7 +50,7 @@ if (!$swfFilePath==null)
 	            $('#documentViewer').FlexPaperViewer(
 				 { config : {
 
-						 DOC : escape(getDocumentUrl(startDocument)),
+						 SWFFile : <?php echo "../docs/" . $_GET["doc"]; ?>
 						 Scale : 0.6,
 						 ZoomTransition : 'easeOut',
 						 ZoomTime : 0.5,
