@@ -10,11 +10,13 @@ if($configManager->getConfig('admin.password')==null){
 	exit;
 }
 $pdfFilePath = $configManager->getConfig('path.pdf') . $_GET["doc"] ;
-$swfFilePath = $configManager->getConfig('path.swf') . $_GET["doc"] . ".swf";
+$swfFilePath = $configManager->getConfig('path.swf') . $_GET["doc"] . filemtime($pdfFilePath) . ".swf";
+$swfFilePatht = $configManager->getConfig('path.swf') . $_GET["doc"] . "*";
 if (!$swfFilePath==null)
-	if (file_exists($swfFilePath))
-		exec('rm ' . $swfFilePath);
-exec('pdf2swf ' . $pdfFilePath . ' ' . $swfFilePath);
+	if (!file_exists($swfFilePath)){
+		exec('rm ' . $swfFilePatht);
+		exec('pdf2swf ' . $pdfFilePath . ' ' . $swfFilePath);
+}
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -50,7 +52,7 @@ exec('pdf2swf ' . $pdfFilePath . ' ' . $swfFilePath);
 	            $('#documentViewer').FlexPaperViewer(
 				 { config : {
 
-						 SWFFile : <?php echo "'" . "../docs/" . $_GET["doc"] . ".swf" ."'"; ?>,
+						 SWFFile : <?php echo "'" . "../docs/" . $_GET["doc"] . filemtime($pdfFilePath) . ".swf" ."'"; ?>,
 						 Scale : 0.6,
 						 ZoomTransition : 'easeOut',
 						 ZoomTime : 0.5,
